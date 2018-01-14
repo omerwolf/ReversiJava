@@ -19,7 +19,7 @@ public SettingHandler(){}
 
 public void readSetting(){
 	try {
-		File file = new File(filePath);
+		File file = new File(this.filePath);
 		if (!file.exists()){
 			file.createNewFile();
 			defaultValues();
@@ -70,8 +70,8 @@ public void writeSetting(Integer boardS, String myP, String stratingP) {
 
 private void defaultValues() {
     this.sizeOfBoard = 8;
-    this.myPlayer = Color.BLACK.toString();
-    this.startPlayer = "player1";
+    this.myPlayer = "BLACK";
+    this.startPlayer = "BLACK";
 }
 
 public Integer getSizeOfBoard() {

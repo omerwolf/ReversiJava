@@ -1,6 +1,8 @@
 package Reversi;
+import Reversi.Cell.Color;
 
-public class GameManger extends Application {
+
+public class GameManager {
 	///members
 	private GameLogic logic;
 	private  Player firstPlayer; 
@@ -22,7 +24,7 @@ public class GameManger extends Application {
 	    return;
 	}
 	
-	GameManager(int size, Color first, Color Second ){
+	GameManager(int size, Color first, Color second ){
 		this.firstPlayer = new Player(first);
 		this.secondPlayer = new Player(second);
 		this.logic = new GameLogic(size);
