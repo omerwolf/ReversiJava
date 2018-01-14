@@ -12,7 +12,7 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SettingController">
    <children>
-      <Button layoutX="197.0" layoutY="287.0" mnemonicParsing="false" text="Back">
+      <Button fx:id="Apply" layoutX="197.0" layoutY="287.0" mnemonicParsing="false" onAction="#apply" text="Apply">
          <GridPane.margin>
             <Insets left="300.0" top="350.0" />
          </GridPane.margin></Button>

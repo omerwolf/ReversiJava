@@ -20,24 +20,24 @@ public class SettingController implements Initializable {
 	@FXML
 	private ChoiceBox<Integer> sizeBoard;
 	@FXML
-	private ChoiceBox<Color> playerColor;
+	private ChoiceBox<String> playerColor;
 	@FXML
-	private ChoiceBox<Color> firstPlayer;
+	private ChoiceBox<String> firstPlayer;
 	@FXML
-	private Button back;
+	private Button Apply;
 	
 	@FXML
-    protected void mainMenu() throws IOException {
+    protected void apply() throws IOException {
         try {
             String writeStartingP;
             SettingHandler handler = new SettingHandler();
-            if (firstPlayer.getValue().equals(Color.WHITE)) {
+            if (firstPlayer.getValue().equals("WHITE")) {
                 writeStartingP = "WHITE";
             } else {
                 writeStartingP = "BLACK";
             }
             handler.writeSetting(sizeBoard.getValue(), writeStartingP, playerColor.getValue().toString());
-            Stage primaryStage = (Stage) back.getScene().getWindow();
+            Stage primaryStage = (Stage) Apply.getScene().getWindow();
             GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("OpenWindow.fxml"));
             root.setAlignment(Pos.CENTER);
             Scene scene = new Scene(root, 400, 400);
@@ -55,8 +55,8 @@ public class SettingController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		sizeBoard.getItems().addAll(4,6,8,10,12,14,16,18,20);
-		playerColor.getItems().addAll(Color.BLACK, Color.WHITE);
-		firstPlayer.getItems().addAll(Color.BLACK, Color.WHITE);
+		playerColor.getItems().addAll("BLACK", "WHITE");
+		firstPlayer.getItems().addAll("BLACK", "WHITE");
 		handleSettingFile();
 	}
 
@@ -65,11 +65,11 @@ public class SettingController implements Initializable {
 		SettingHandler handler = new SettingHandler();
         handler.readSetting();
         sizeBoard.setValue(handler.getSizeOfBoard());
-        playerColor.setValue(Color.web(handler.getMyPlayer()));
+        playerColor.setValue(handler.getMyPlayer());
         if (handler.getStartPlayer().equals("BLACK")) {
-            firstPlayer.setValue(Color.BLACK);
+            firstPlayer.setValue("BLACK");
         } else {
-            firstPlayer.setValue(Color.WHITE);
+            firstPlayer.setValue("WHITE");
         }
 	}
 }

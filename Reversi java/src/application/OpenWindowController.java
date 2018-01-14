@@ -40,7 +40,7 @@ public class OpenWindowController extends GridPane {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Setting.fxml"));
             Pane root = (Pane) loader.load();
             loader.setController(new SettingController());
-            Scene settingScene = new Scene(root, 400, 350);
+            Scene settingScene = new Scene(root, 500, 400);
             stage.setScene(settingScene);
             stage.show();
 
