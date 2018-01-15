@@ -1,8 +1,7 @@
 
 package Reversi;
+import javafx.scene.paint.Color;
 import Reversi.Cell;
-import Reversi.Cell.Color;
-
 
 public class Board{
 	//members:
@@ -12,7 +11,12 @@ public class Board{
 	//Constructor:
 	public Board(int sizeOfBoard){
 		this.size = sizeOfBoard;
-		this.matrix = new  Cell[sizeOfBoard][sizeOfBoard];
+		this.matrix = new Cell[size][size];
+		for (int i = 0; i < size; i++) {
+	            for (int j = 0; j < size; j++) {
+	                this.matrix[i][j] = new Cell();
+	            }
+		}
 		for(int row = 0; row < size; row++){
 			for(int col = 0; col < size; col++){
 				if ((row == size / 2 - 1 && col == size / 2 - 1) || (row == size / 2 && col == size / 2)){
@@ -27,14 +31,12 @@ public class Board{
 				}else {
 					matrix[row][col].setX(row);
 					matrix[row][col].setY(col);
-					matrix[row][col].setColor(Color.EMPTY);
+					matrix[row][col].setColor(Color.RED);
 			 	}
 			 }
 	     }
      }
-	public void insertion(int x, int y , Color color){
-		matrix[x - 1][y - 1].setColor(color); 
-	}
+
 	
 	//getters and setters:
 		public int getSize() {

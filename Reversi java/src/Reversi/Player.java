@@ -1,9 +1,8 @@
 package Reversi;
-import Reversi.Cell;
-import Reversi.Cell.Color;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javafx.scene.paint.Color;
 
 public class Player {
 	//members:
@@ -30,7 +29,7 @@ public class Player {
 		if(allMoves.isEmpty()){
 			cell.setX(-1);
 			cell.setY(-1);
-			cell.setColor(Color.EMPTY);
+			cell.setColor(Color.RED);
 			return cell;
 		}
 		else {

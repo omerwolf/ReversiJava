@@ -1,5 +1,5 @@
 package Reversi;
-import Reversi.Cell.Color;
+import javafx.scene.paint.Color;
 
 
 public class GameManager {
@@ -15,11 +15,11 @@ public class GameManager {
 	
 	public void start() {
 	    do {
-	        logic.playTurn(firstPlayer);
+	        //logic.playTurn(firstPlayer);
 	        if (isWinGame()) {
 				return;
 	        }
-	        logic.playTurn(secondPlayer);
+	        ///logic.playTurn(secondPlayer);
 	    } while (!isWinGame());
 	    return;
 	}

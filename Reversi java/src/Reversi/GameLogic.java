@@ -1,27 +1,36 @@
 package Reversi;
 import java.util.ArrayList;
-import Reversi.Cell.Color;
+
+import javafx.scene.paint.Color;
 
 public class GameLogic {
 	//members:
+	private int scoreBlack, scoreWhite;
+	
+	public int getScoreBlack() {
+		return scoreBlack;
+	}
+	
+	public int getScoreWhite() {
+		return scoreWhite;
+	}
+
+	public ArrayList<Cell> getWhiteMove() {
+		return whiteMove;
+	}
+
 	protected Board board;
 	protected ArrayList<Cell> blackMove, whiteMove;
 	
 	//constractor:
-	GameLogic(int size){
+	public GameLogic(int size){
 		this.board = new Board(size);
-		
 	}
+	
 	//function:
-	public void printWinner(){
-		int numOfWhite = countBoard(Color.WHITE);
-		int numOfBlack = countBoard(Color.BLACK);
-		if (numOfWhite > numOfBlack)
-			System.out.println("Congratulation the white player is the winner");
-		else if (numOfWhite < numOfBlack)
-			System.out.println("Congratulation the black player is the winner");
-		else
-			System.out.println("It's a tie, well done");
+	public void updateScore(){
+		this.scoreWhite = countBoard(Color.WHITE);
+		this.scoreBlack = countBoard(Color.BLACK);
 	}
 
 	public int countBoard(Color sign) {
@@ -35,6 +44,7 @@ public class GameLogic {
 	    }
 	    return counter;
 	}
+	
 	public void printMoves(Color sign) {
 		System.out.println("Your posible moves:");
 	    if (sign == Color.WHITE) {
@@ -58,12 +68,12 @@ public class GameLogic {
 		int counter = 0;
 		int i = 0;
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getX() - i == 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getX() - i == 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() - (i + 1), move.getY())).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX() - i, move.getY())).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() - i, move.getY())).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getX() - i == 0)
@@ -73,12 +83,12 @@ public class GameLogic {
 			
 		}
 		else {
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getX() - i == 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getX() - i == 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() - (i + 1), move.getY())).getColor() != Color.WHITE){
 					i++;
-					if((this.board.getMatrix(move.getX() - i, move.getY())).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() - i, move.getY())).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getX() - i == 0)
@@ -96,12 +106,12 @@ public class GameLogic {
 		int i = 0;
 		int sizeOfBoard = this.board.getSize();
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getX() + i + 1 == sizeOfBoard)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getX() + i + 1 == sizeOfBoard)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() + (i + 1), move.getY())).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX() + i, move.getY())).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() + i, move.getY())).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getX() + i + 1 == sizeOfBoard)
@@ -111,12 +121,12 @@ public class GameLogic {
 			
 		}
 		else {
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getX() + i + 1 == sizeOfBoard)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getX() + i + 1 == sizeOfBoard)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() + (i + 1), move.getY())).getColor() != Color.WHITE){
 					i++;
-					if((this.board.getMatrix(move.getX() + i, move.getY())).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() + i, move.getY())).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getX() + i + 1 == sizeOfBoard)
@@ -135,12 +145,12 @@ public class GameLogic {
 		int i = 0;
 		int sizeOfBoard = this.board.getSize();
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() + i + 1 == sizeOfBoard)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() + i + 1 == sizeOfBoard)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX(), move.getY() + (i + 1))).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX(), move.getY() + i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX(), move.getY() + i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() + i + 1 == sizeOfBoard)
@@ -150,12 +160,12 @@ public class GameLogic {
 			
 		}
 		else {
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() + i + 1 == sizeOfBoard)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() + i + 1 == sizeOfBoard)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX(), move.getY() + (i + 1))).getColor() != Color.WHITE){
 					i++;
-					if((this.board.getMatrix(move.getX(), move.getY() + i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX(), move.getY() + i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() + i + 1 == sizeOfBoard)
@@ -172,12 +182,12 @@ public class GameLogic {
 		int counter = 0;
 		int i = 0;
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() - i == 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() - i == 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX(), move.getY() - (i + 1))).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX(), move.getY() - i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX(), move.getY() - i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() - i == 0)
@@ -187,12 +197,12 @@ public class GameLogic {
 			
 		}
 		else {
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() - i == 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() - i == 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX(), move.getY() - (i + 1))).getColor() != Color.WHITE){
 					i++;
-					if((this.board.getMatrix(move.getX(), move.getY() - i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX(), move.getY() - i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() - i == 0)
@@ -209,12 +219,12 @@ public class GameLogic {
 		int counter = 0;
 		int i = 0;
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() - i == 0 || move.getX() - i == 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() - i == 0 || move.getX() - i == 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() - (i + 1), move.getY() - (i + 1))).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX() - i, move.getY() - i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() - i, move.getY() - i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() - i == 0 || move.getX() - i == 0)
@@ -224,12 +234,12 @@ public class GameLogic {
 			
 		}
 		else {
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() - i == 0 || move.getX() - i == 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() - i == 0 || move.getX() - i == 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() - (i + 1), move.getY() - (i + 1))).getColor() != Color.WHITE){
 					i++;
-					if((this.board.getMatrix(move.getX() - i, move.getY() - i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() - i, move.getY() - i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() - i == 0 || move.getX() - i == 0)
@@ -247,12 +257,12 @@ public class GameLogic {
 		int i = 0;
 		int sizeOfBoard = this.board.getSize();
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() - i == 0 || move.getX() + i + 1 == sizeOfBoard)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() - i == 0 || move.getX() + i + 1 == sizeOfBoard)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() + (i + 1), move.getY() - (i + 1))).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX() + i, move.getY() - i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() + i, move.getY() - i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() - i == 0 || move.getX() + i + 1 == sizeOfBoard)
@@ -262,12 +272,12 @@ public class GameLogic {
 			
 		}
 		else {
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() - i == 0 || move.getX() + i + 1 == sizeOfBoard)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() - i == 0 || move.getX() + i + 1 == sizeOfBoard)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() + (i + 1), move.getY() - (i + 1))).getColor() != Color.WHITE){
 					i++;
-					if((this.board.getMatrix(move.getX() + i, move.getY() - i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() + i, move.getY() - i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() - i == 0 || move.getX() + i + 1 == sizeOfBoard)
@@ -285,12 +295,12 @@ public class GameLogic {
 		int i = 0;
 		int sizeOfBoard = this.board.getSize();
 		if (sign == Color.BLACK){
-			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() + i + 1== sizeOfBoard || move.getX() - i== 0)
+			if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() + i + 1== sizeOfBoard || move.getX() - i== 0)
 				return false;
 			else {
 				while ((this.board.getMatrix(move.getX() - (i + 1), move.getY() + (i + 1))).getColor() != Color.BLACK){
 					i++;
-					if((this.board.getMatrix(move.getX() - i, move.getY() + i)).getColor() == Color.EMPTY)
+					if((this.board.getMatrix(move.getX() - i, move.getY() + i)).getColor() == Color.RED)
 						return false;
 				     counter++;
 				     if(move.getY() + i + 1== sizeOfBoard || move.getX() - i== 0)
@@ -299,12 +309,12 @@ public class GameLogic {
 			}
 			
 		}else{
-		if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() + i + 1== sizeOfBoard || move.getX() - i== 0)
+		if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() + i + 1== sizeOfBoard || move.getX() - i== 0)
 			return false;
 		else {
 			while ((this.board.getMatrix(move.getX() - (i + 1), move.getY() + (i + 1))).getColor() != Color.WHITE){
 				i++;
-				if((this.board.getMatrix(move.getX() - i, move.getY() + i)).getColor() == Color.EMPTY)
+				if((this.board.getMatrix(move.getX() - i, move.getY() + i)).getColor() == Color.RED)
 					return false;
 			     counter++;
 			     if(move.getY() + i + 1== sizeOfBoard || move.getX() - i== 0)
@@ -322,12 +332,12 @@ public class GameLogic {
 	int i = 0;
 	int sizeOfBoard = this.board.getSize();
 	if (sign == Color.BLACK){
-		if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() + i + 1== sizeOfBoard || move.getX() + i + 1== sizeOfBoard)
+		if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() + i + 1== sizeOfBoard || move.getX() + i + 1== sizeOfBoard)
 			return false;
 		else {
 			while ((this.board.getMatrix(move.getX() + (i + 1), move.getY() + (i + 1))).getColor() != Color.BLACK){
 				i++;
-				if((this.board.getMatrix(move.getX() + i, move.getY() + i)).getColor() == Color.EMPTY)
+				if((this.board.getMatrix(move.getX() + i, move.getY() + i)).getColor() == Color.RED)
 					return false;
 			     counter++;
 			     if(move.getY() + i + 1== sizeOfBoard || move.getX() + i + 1== sizeOfBoard)
@@ -336,12 +346,12 @@ public class GameLogic {
 		}
 		
 	}else{
-		if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.EMPTY || move.getY() + i + 1== sizeOfBoard || move.getX() + i + 1== sizeOfBoard)
+		if((this.board.getMatrix(move.getX(), move.getY())).getColor() != Color.RED || move.getY() + i + 1== sizeOfBoard || move.getX() + i + 1== sizeOfBoard)
 			return false;
 		else {
 			while ((this.board.getMatrix(move.getX() + (i + 1), move.getY() + (i + 1))).getColor() != Color.WHITE){
 				i++;
-				if((this.board.getMatrix(move.getX() + i, move.getY() + i)).getColor() == Color.EMPTY)
+				if((this.board.getMatrix(move.getX() + i, move.getY() + i)).getColor() == Color.RED)
 					return false;
 			     counter++;
 			     if(move.getY() + i + 1== sizeOfBoard || move.getX() + i + 1== sizeOfBoard)
@@ -358,7 +368,7 @@ public class GameLogic {
 	
 	////////
 	private ArrayList <Cell> PossibleMoves(Color sign) {
-	    ArrayList <Cell> arrTemp = new ArrayList<>();
+	    ArrayList <Cell> arrTemp = new ArrayList<Cell>();
 	    Cell temp = new Cell();
 	    for (int i = 0; i < board.getSize(); i++) {
 	        for (int j = 0; j < board.getSize(); j++) {
@@ -368,15 +378,19 @@ public class GameLogic {
 	                canReverseDown(sign, temp) || canReverseRight(sign, temp) ||
 	                canReverseLeft(sign, temp) || canReverseDownLeft(sign, temp) ||
 	                canReverseUpRight(sign, temp) || canReverseUpLeft(sign, temp)) {
-	                arrTemp.add(temp);
+	            	Cell fix = new Cell();
+	            	fix.setX(i);
+	            	fix.setY(j);
+	                arrTemp.add(fix);
 	            }
 	        }
 	    }
 	    return arrTemp;
 	}
 	public boolean isWin() {
+		setVector(PossibleMoves(Color.BLACK), Color.BLACK);
+        setVector(PossibleMoves(Color.WHITE), Color.WHITE);
 	    if ((blackMove.isEmpty()) && (whiteMove.isEmpty())) {
-	        printWinner();
 	        return true;
 	    }
 	    return false;
@@ -465,25 +479,36 @@ public class GameLogic {
 	        i++;
 	    } 
 	}
-	public int playTurn(Player player) {
-	    Cell cell;
-	    ArrayList <Cell> temp = PossibleMoves(player.getColor());
-	    setVector(temp, player.getColor());
-	    printMoves(player.getColor());
-	    cell = player.makeMove(temp);
-	    if (cell.getX() == -1 && cell.getY() == -1) {
-	        System.out.println("You have no legal Move.\n");
-	        return -1;
+	public int playTurn(Color color, Cell cell) {
+	    ArrayList <Cell> temp = PossibleMoves(color);
+	    if (temp.isEmpty()){
+	    	return -1;
 	    }
 	    else {
-			System.out.println("Played :" + cell);
-	        flip(player.getColor(), cell);
-	        setVector(PossibleMoves(Color.BLACK), Color.BLACK);
-	        setVector(PossibleMoves(Color.WHITE), Color.WHITE);
+		    setVector(temp, color);
+		    if (isLegal(temp, cell)){
+	        flip(color, cell);
+		    updateScore();
+		    return 1;
+		    }
+		    else {
+		    	return 0;
+		    }
 	    }
-	    return 1;
 	}
 
+	public boolean isLegal(ArrayList<Cell> allMoves, Cell checkCell){
+		int arrayLen = allMoves.size();
+		for (int i = 0; i < arrayLen; i++){
+			if ((checkCell.getX() == allMoves.get(i).getX()) && (checkCell.getY() == allMoves.get(i).getY()))
+				return true;
+			}
+			return false;
+	}
+	
+	public Board getBoard(){
+		return this.board;
+	}
 	private void setVector(ArrayList <Cell> temp, Color sign){
 	    if (sign ==  Color.BLACK){
 	        blackMove = temp;

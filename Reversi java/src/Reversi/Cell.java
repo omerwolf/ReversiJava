@@ -1,17 +1,19 @@
 package Reversi;
 
+import javafx.scene.paint.Color;
+
 public class Cell {
 	//members:
 	private int x;
 	private int y;
 	private Color color;
-	public enum Color {BLACK,WHITE,EMPTY}
+
 	
 	//constructor:
 	public Cell(){
 		this.x = 0;
 		this.y = 0;
-		this.color = Color.EMPTY;
+		this.color = Color.RED;
 	}
 	
 	//getters and setters:
