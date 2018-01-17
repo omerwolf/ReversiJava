@@ -3,7 +3,6 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Reversi.Board;
 import Reversi.Cell;
 import Reversi.GameLogic;
 import javafx.event.ActionEvent;
@@ -12,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -38,10 +39,11 @@ public class GameFlowController implements Initializable {
 	@FXML
 	private HBox root;
 	@FXML
-	private Label message, otherMessage;
+	private Label otherMessage;
 	@FXML
 	private Button exit;
-	
+	@FXML
+	private Alert alert;
 	
 
 	@Override
@@ -61,11 +63,9 @@ public class GameFlowController implements Initializable {
         root.setAlignment(Pos.TOP_LEFT);
         boardControl.draw();
         VBox notes = new VBox();
-        this.currentTrun = new Label("\nCurrent player: Player 1");
+        this.currentTrun = new Label("Current player: " + returnColor(this.current));
         this.scoreBlack = new Label("Black player score: 2");
         this.scoreWhite = new Label("White player score: 2");
-        message = new Label("Player 1:\nIt's your move!");
-        message.setFont(new Font(15));
         otherMessage = new Label("");
         otherMessage.setFont(new Font(15));
         this.exit = new Button("Exit");
@@ -85,7 +85,7 @@ public class GameFlowController implements Initializable {
         	boardControl.setPrefHeight(newValue.doubleValue());
         	boardControl.draw();
         });
-        notes.getChildren().addAll(currentTrun, scoreBlack, scoreWhite, message, otherMessage, exit);
+        notes.getChildren().addAll(currentTrun, scoreBlack, scoreWhite, otherMessage, exit);
         root.getChildren().add(notes);
         this.current = P1;
         boardControl.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -93,46 +93,82 @@ public class GameFlowController implements Initializable {
             Move(move);
         });	
 	}
-@FXML
-private void Move(Cell move) {
-	Cell cell = move;
-	cell.setX(move.getX()-1);
-	cell.setY(move.getY()-1);
-	if (logic.isWin()){
-		return;
-	}
-	if (this.current == Color.BLACK){
-		int check = logic.playTurn(Color.BLACK, cell);
-		if (check == -1){
-			///message
-		}
-		else if (check ==1){
-			this.scoreBlack.setText("Black player score is: " + logic.getScoreBlack());
-			this.scoreWhite.setText("White player score is: " + logic.getScoreWhite());
-			current = Color.WHITE;
-			boardControl.draw();
-		}
-		else {
+	@FXML
+	private void Move(Cell move) {
+		printMessage("");
+		Cell cell = move;
+		cell.setX(move.getX()-1);
+		cell.setY(move.getY()-1);
+		if (logic.isWin()){
+			printWinner();
 			return;
 		}
+		if (this.current == Color.BLACK){
+			int check = logic.playTurn(Color.BLACK, cell);
+			if (check == -1){
+				printMessage("Black you have no legal Move");
+				current = Color.WHITE;
+			}
+			else if (check ==1){
+				this.scoreBlack.setText("Black player score is: " + logic.getScoreBlack());
+				this.scoreWhite.setText("White player score is: " + logic.getScoreWhite());
+				current = Color.WHITE;
+				boardControl.draw();
+				this.currentTrun.setText("Current player: " + returnColor(this.current));
+				if (logic.isWin()){
+					printWinner();
+					return;
+				}
+			}
+			else {
+				printMessage("Invalid Move!");
+			}
+		}
+		else{
+			int check = logic.playTurn(Color.WHITE, cell);
+			if (check == -1){
+				printMessage("White you have no valid move");
+				current = Color.BLACK;
+			}
+			else if (check == 1){
+				this.scoreBlack.setText("Black player score is: " + logic.getScoreBlack());
+				this.scoreWhite.setText("White player score is: " + logic.getScoreWhite());
+				current = Color.BLACK;
+				boardControl.draw();
+				this.currentTrun.setText("Current player: " + returnColor(this.current));
+				if (logic.isWin()){
+					printWinner();
+					return;
+				}
+			}
+			else {
+				printMessage("Invalid Move!");
+			}
+		}
 	}
-	else{
-		int check = logic.playTurn(Color.WHITE, cell);
-		if (check == -1){
-			///message
-		}
-		else if (check == 1){
-			this.scoreBlack.setText("Black player score is: " + logic.getScoreBlack());
-			this.scoreWhite.setText("White player score is: " + logic.getScoreWhite());
-			current = Color.BLACK;
-			boardControl.draw();
-		}
-		else {
-			return;
-		}
-	}
-}
 
+	private void printWinner() {
+		int black, white;
+		black = logic.getScoreBlack();
+		white = logic.getScoreWhite();
+		this.alert = new Alert(AlertType.INFORMATION);
+		this.alert.setTitle("Information Dialog");
+		this.alert.setHeaderText("The game is over");
+
+		if (black > white){
+			this.alert.setContentText("Congratulation the winner is Black");
+
+		}
+		else if (black < white){
+			this.alert.setContentText("Congratulation the winner is white");
+
+		}
+		else{
+			this.alert.setContentText("Congratulation it's a tie");
+
+		}
+		this.alert.showAndWait();
+	}
 	private Cell convertClick(double x, double y) {
 			
 			  for (int i = 0; i < this.size; i++) {
@@ -167,6 +203,18 @@ private void Move(Cell move) {
 	            e.printStackTrace();
 	        }
 		}
-		
+	
+	private void printMessage(String str){
+		this.otherMessage.setText(str);
+	}
+	
+	private String returnColor(Color color){
+		if (color == Color.BLACK){
+			return "Black";
+		}
+		else{
+			return "White";
+		}
+	}
 		
 }

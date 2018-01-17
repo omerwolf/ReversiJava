@@ -48,7 +48,7 @@ public class SettingHandler {
 	         defaultValues();
 	     }
 	}
-	public void writeSetting(Integer boardS, String myP, String stratingP) {	
+	public void writeSetting(Integer boardS, String stratingP, String myP) {	
 		        try {
 		            File file = new File(this.filePath);
 	
