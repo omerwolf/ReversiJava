@@ -1,3 +1,6 @@
+/***********************************************************************
+* Name : Yoel Jasner & Omer Wolf									   *
+***********************************************************************/
 package Reversi;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,12 +12,22 @@ public class Player {
 	private int score;
 	private Color color;
 	
-	//Constructor:
+	/**
+     * constructor- creates a PLayer according to color.
+     *
+     * @param color1-the color of wanted Player.
+     */
 	public Player(Color color1){
 		this.score = 2;
 		this.color = color1;
 	}
-	//function:
+    /**
+     * Check if its legal to make a move from possible move array.
+     * 
+     * @param allMoves- checked array.
+     * @param checkCell - checked cell. 
+     * @return true if its legal and false O.W
+     */
 	public boolean isLegal(ArrayList<Cell> allMoves, Cell checkCell){
 		int arrayLen = allMoves.size();
 		for (int i = 0; i < arrayLen; i++){
@@ -23,7 +36,12 @@ public class Player {
 			}
 			return false;
 	}
-	
+    /**
+     * scan cell from player .
+     * 
+     * @param allMoves- possible moves array.
+     * @return the scanned cell
+     */
 	public Cell makeMove(ArrayList<Cell> allMoves) {
 		Cell cell = new Cell();
 		if(allMoves.isEmpty()){
@@ -52,16 +70,35 @@ public class Player {
 		}
 		
 	}
-	
+    /**
+     * return the player score
+     * 
+     * @return score
+     */
 	public int getScore() {
 		return score;
 	}
+    /**
+     * set the player score
+     * 
+     * @param score - change score wanted
+     */
 	public void setScore(int score) {
 		this.score = score;
 	}
+    /**
+     * return the player color
+     * 
+     * @return color
+     */
 	public Color getColor() {
 		return color;
 	}
+    /**
+     * set the player color
+     * 
+     * @param color - change color wanted
+     */
 	public void setColor(Color color) {
 		this.color = color;
 	}

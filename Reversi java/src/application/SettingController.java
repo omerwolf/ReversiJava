@@ -1,3 +1,6 @@
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package application;
 
 
@@ -25,7 +28,12 @@ public class SettingController implements Initializable {
 	private ChoiceBox<String> firstPlayer;
 	@FXML
 	private Button Apply;
-	
+   
+	/**
+     * Returns to the main menu.
+     *
+     * @throws IOException if failed.
+     */
 	@FXML
     protected void apply() throws IOException {
         try {
@@ -51,7 +59,11 @@ public class SettingController implements Initializable {
 
 }
 
-
+	 /**
+     * Initialize the settings.
+     * @param location
+     * @param resources
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		sizeBoard.getItems().addAll(4,6,8,10,12,14,16,18,20);
@@ -60,7 +72,9 @@ public class SettingController implements Initializable {
 		handleSettingFile();
 	}
 
-
+	 /**
+     * initialize the values in the setting.
+     */
 	private void handleSettingFile() {
 		SettingHandler handler = new SettingHandler();
         handler.readSetting();

@@ -1,9 +1,11 @@
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package application;
 
-import java.awt.Color;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -14,9 +16,15 @@ public class SettingHandler {
 	String filePath = "settings.txt";
 	private static final int NUM_0F_LINES = 3;
 	
-	
+
+    /**
+     *Default constructor for setting handler.
+     */
 	public SettingHandler(){}
-	
+
+    /**
+     * Read from the settings file.
+     */
 	public void readSetting(){
 		try {
 			File file = new File(this.filePath);
@@ -48,6 +56,13 @@ public class SettingHandler {
 	         defaultValues();
 	     }
 	}
+    /**
+     * write to the settings file.
+     * 
+     * @param boardS- the size of board.
+     * @param stratingP -the starting player.
+     * @param myP - the current player.
+     */
 	public void writeSetting(Integer boardS, String stratingP, String myP) {	
 		        try {
 		            File file = new File(this.filePath);
@@ -67,21 +82,35 @@ public class SettingHandler {
 		            System.out.println("Can't write settings to file");
 		        }
 		}
-	
+    /**
+     * initializes a new settings file with default values.
+     */
 	private void defaultValues() {
 	    this.sizeOfBoard = 8;
 	    this.myPlayer = "BLACK";
 	    this.startPlayer = "BLACK";
 	}
-	
+    /**
+     * Returns the board size.
+     *
+     * @return sizeOfBoard - the board size.
+     */
 	public Integer getSizeOfBoard() {
 		return sizeOfBoard;
 	}
-	
+    /**
+     * Returns the current player.
+     *
+     * @return myPlayer - the current player.
+     */
 	public String getMyPlayer() {
 		return myPlayer;
 	}
-	
+	 /**
+     * Returns the first player.
+     *
+     * @return myPlayer - the first player.
+     */
 	public String getStartPlayer() {
 		return startPlayer;
 	}

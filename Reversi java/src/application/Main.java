@@ -1,3 +1,6 @@
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package application;
 	
 import javafx.application.Application;
@@ -8,6 +11,11 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+    /**
+     *  Starts the menu controller.
+     *
+     * @param primaryStage main stage.
+     */
 	@Override
 	public void start(Stage primaryStage) {
 		try {

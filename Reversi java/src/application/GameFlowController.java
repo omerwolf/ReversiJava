@@ -1,3 +1,6 @@
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package application;
 
 import java.net.URL;
@@ -45,7 +48,12 @@ public class GameFlowController implements Initializable {
 	@FXML
 	private Alert alert;
 	
-
+    /**
+     * This method initializes the game flow controller.
+     *
+     * @param location  
+     * @param resource
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         SettingHandler handler = new SettingHandler();
@@ -64,8 +72,8 @@ public class GameFlowController implements Initializable {
         boardControl.draw();
         VBox notes = new VBox();
         this.currentTrun = new Label("Current player: " + returnColor(this.current));
-        this.scoreBlack = new Label("Black player score: 2");
-        this.scoreWhite = new Label("White player score: 2");
+        this.scoreBlack = new Label("Black score: 2");
+        this.scoreWhite = new Label("White score: 2");
         otherMessage = new Label("");
         otherMessage.setFont(new Font(15));
         this.exit = new Button("Exit");
@@ -93,6 +101,11 @@ public class GameFlowController implements Initializable {
             Move(move);
         });	
 	}
+	 /**
+     * make one move of a player
+     *
+     * @param move-  the wanted move of the player
+     */
 	@FXML
 	private void Move(Cell move) {
 		printMessage("");
@@ -110,8 +123,8 @@ public class GameFlowController implements Initializable {
 				current = Color.WHITE;
 			}
 			else if (check ==1){
-				this.scoreBlack.setText("Black player score is: " + logic.getScoreBlack());
-				this.scoreWhite.setText("White player score is: " + logic.getScoreWhite());
+				this.scoreBlack.setText("Black score: " + logic.getScoreBlack());
+				this.scoreWhite.setText("White score: " + logic.getScoreWhite());
 				current = Color.WHITE;
 				boardControl.draw();
 				this.currentTrun.setText("Current player: " + returnColor(this.current));
@@ -131,8 +144,8 @@ public class GameFlowController implements Initializable {
 				current = Color.BLACK;
 			}
 			else if (check == 1){
-				this.scoreBlack.setText("Black player score is: " + logic.getScoreBlack());
-				this.scoreWhite.setText("White player score is: " + logic.getScoreWhite());
+				this.scoreBlack.setText("Black score: " + logic.getScoreBlack());
+				this.scoreWhite.setText("White score: " + logic.getScoreWhite());
 				current = Color.BLACK;
 				boardControl.draw();
 				this.currentTrun.setText("Current player: " + returnColor(this.current));
@@ -146,7 +159,10 @@ public class GameFlowController implements Initializable {
 			}
 		}
 	}
-
+	 /**
+     * Print the winner color on the screen.
+     *
+     */
 	private void printWinner() {
 		int black, white;
 		black = logic.getScoreBlack();
@@ -169,6 +185,13 @@ public class GameFlowController implements Initializable {
 		}
 		this.alert.showAndWait();
 	}
+	 /**
+     * change the mouse click position to [i,j] position in the board.
+     *
+     * @param x - the row coordinate of the click.
+     * @param y - the column coordinate of the click.
+     * @return the cell [i,j]
+     */
 	private Cell convertClick(double x, double y) {
 			
 			  for (int i = 0; i < this.size; i++) {
@@ -188,7 +211,14 @@ public class GameFlowController implements Initializable {
               temp.setY(-1);
           	  return temp;
 	}
-		
+	  /**
+     *  Return back to the menu.
+     *
+     * @param string 
+     * @param i  - the width.
+     * @param j  - the height.
+     * @param ev - event if needed.
+     */	
 	private void goToMenu(String string, int i, int j, ActionEvent ev) {
 			try {
 	            Stage primaryStage = (Stage) this.exit.getScene().getWindow();
@@ -203,11 +233,19 @@ public class GameFlowController implements Initializable {
 	            e.printStackTrace();
 	        }
 		}
-	
+	/**
+	 * print message on screen
+	 * 
+	 * @param str- the wanted massage.
+	 */
 	private void printMessage(String str){
 		this.otherMessage.setText(str);
 	}
-	
+	/**
+	 * convert the color of the player to string.
+	 * 
+	 * @param color- the wanted color.
+	 */
 	private String returnColor(Color color){
 		if (color == Color.BLACK){
 			return "Black";

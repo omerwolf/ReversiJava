@@ -1,3 +1,6 @@
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package application;
 
 import java.io.IOException;
@@ -14,14 +17,12 @@ public class ReversiBoardController extends GridPane {
 	private Board board;
 	private double heightCell, widthCell;
 	
-	public double getHeightCell() {
-		return heightCell;
-	}
 
-	public double getWidthCell() {
-		return widthCell;
-	}
-
+    /**
+     * Constructor .
+     *
+     * @param b - board
+     */
 	ReversiBoardController (Board b){
 		this.board = b;
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
@@ -33,7 +34,10 @@ public class ReversiBoardController extends GridPane {
 			throw new RuntimeException(exception);
 		}
 	}
-	
+
+    /**
+     * Draws the board.
+     */
 	public void draw () {
 		int sizeOfBoard = board.getSize();
 		this.getChildren().clear();
@@ -59,6 +63,22 @@ public class ReversiBoardController extends GridPane {
                 }
 			}
 		}
+	}
+    /**
+     * Returns the cell height.
+     *
+     * @return cell height.
+     */
+	public double getHeightCell() {
+		return heightCell;
+	}
+    /**
+     * Returns the cell width.
+     *
+     * @return cell width.
+     */
+	public double getWidthCell() {
+		return widthCell;
 	}
 }
 

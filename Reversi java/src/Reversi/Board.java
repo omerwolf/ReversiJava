@@ -1,14 +1,21 @@
-
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package Reversi;
 import javafx.scene.paint.Color;
 import Reversi.Cell;
+
 
 public class Board{
 	//members:
 	private Cell[][] matrix;
 	private int size;
 	
-	//Constructor:
+    /**
+     * constructor- creates a board according to size.
+     *
+     * @param sizeOfBoard-the size of wanted board.
+     */
 	public Board(int sizeOfBoard){
 		this.size = sizeOfBoard;
 		this.matrix = new Cell[size][size];
@@ -38,16 +45,41 @@ public class Board{
      }
 
 	
-	//getters and setters:
+		/**
+	  	* Return the size of the board.
+     	*
+     	* @return the size of the board.
+     	*/
 		public int getSize() {
 			return size;
 		}
+		/**
+	     * Set the size of the board.
+	     *
+	     * @param sizeOfBoard-the size of wanted board.
+	     * @return the size of the board.
+	     */
 		public void setSize(int size) {
 			this.size = size;
 		}
+		/**
+	     * Return the cell in place [i,j].
+	     *
+	     * @param i-the row number.
+	     * @param j-the column number.
+	     * @return cell[i,j]
+	     */
 		public Cell getMatrix(int i , int j){
 			return matrix[i][j];
 		}
+		/**
+	     * Set the color of cell in place[i,j].
+	     *
+	     * @param row-the row number.
+	     * @param col-the column number.
+	     * @param color-the new color.
+	     * @return set the color in cell[i,j].
+	     */
 		public void setMatrix(int row, int col, Color color){
 			matrix[row][col].setColor(color);
 	}

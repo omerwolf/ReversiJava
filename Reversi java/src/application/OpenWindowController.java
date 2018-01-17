@@ -1,3 +1,6 @@
+/*
+ * Name : Yoel Jasner & Omer Wolf
+ */
 package application;
 
 import java.io.IOException;
@@ -18,6 +21,9 @@ public class OpenWindowController extends GridPane {
 	@FXML
 	private Button exitB;
 	
+    /**
+     * This method starts the game.
+     */
 	@FXML
 	protected void startGame() {
         try {
@@ -32,7 +38,9 @@ public class OpenWindowController extends GridPane {
             e.printStackTrace();
         }
 	}
-	
+    /**
+     * This method starts the settings.
+     */
 	@FXML
 	protected void settingGame() {
         try {
@@ -48,7 +56,9 @@ public class OpenWindowController extends GridPane {
             e.printStackTrace();
         }
 	}
-	
+    /**
+     * This method exits the menu and closes the game.
+     */
 	@FXML
 	protected void exit(){
 		Stage stage = (Stage) exitB.getScene().getWindow();
