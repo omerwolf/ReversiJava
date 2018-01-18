@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OpenWindowController">
+   <children>
+      <Button fx:id="startGameB" layoutX="159.0" layoutY="134.0" mnemonicParsing="false" onAction="#startGame" text="Start Game">
+         <GridPane.margin>
+            <Insets left="168.0" right="100.0" top="100.0" />
+         </GridPane.margin></Button>
+      <Button fx:id="settingB" layoutX="154.0" layoutY="188.0" mnemonicParsing="false" onAction="#settingGame" text="Setting Menu">
+         <GridPane.margin>
+            <Insets left="165.0" right="100.0" top="200.0" />
+         </GridPane.margin></Button>
+      <Button fx:id="exitB" layoutX="162.0" layoutY="241.0" mnemonicParsing="false" onAction="#exit" text="Exit Game">
+         <GridPane.margin>
+            <Insets left="175.0" right="100.0" top="300.0" />
+         </GridPane.margin></Button>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

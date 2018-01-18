@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SettingController">
+   <children>
+      <Button fx:id="Apply" layoutX="197.0" layoutY="287.0" mnemonicParsing="false" onAction="#apply" text="Apply">
+         <GridPane.margin>
+            <Insets left="300.0" top="350.0" />
+         </GridPane.margin></Button>
+      <Label layoutX="78.0" layoutY="114.0" text="Size of board:">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin>
+      </Label>
+      <Label layoutX="79.0" layoutY="154.0" text="Color of player:">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="50.0" top="100.0" />
+         </GridPane.margin>
+      </Label>
+      <Label layoutX="78.0" layoutY="183.0" prefHeight="51.0" prefWidth="97.0" text="First player:">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="50.0" top="200.0" />
+         </GridPane.margin>
+      </Label>
+      <Label alignment="CENTER" layoutX="111.0" layoutY="27.0" prefHeight="58.0" prefWidth="179.0" text="Game Setting" textAlignment="JUSTIFY">
+         <font>
+            <Font name="FreeSans Bold" size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="120.0" right="100.0" top="-200.0" />
+         </GridPane.margin>
+      </Label>
+      <ChoiceBox fx:id="sizeBoard" layoutX="191.0" layoutY="111.0" prefWidth="150.0">
+         <GridPane.margin>
+            <Insets left="160.0" />
+         </GridPane.margin></ChoiceBox>
+      <ChoiceBox fx:id="playerColor" layoutX="191.0" layoutY="151.0" prefWidth="150.0">
+         <GridPane.margin>
+            <Insets left="160.0" top="100.0" />
+         </GridPane.margin></ChoiceBox>
+      <ChoiceBox fx:id="firstPlayer" layoutX="190.0" layoutY="194.0" prefWidth="150.0">
+         <GridPane.margin>
+            <Insets left="160.0" top="200.0" />
+         </GridPane.margin></ChoiceBox>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
