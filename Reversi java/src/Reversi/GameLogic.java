@@ -590,26 +590,44 @@ public class GameLogic {
      * 
      * @param sign- the color that want to change.
      * @param cell - the destination cell. 
-     * @return -1 if there is no move, 1 if its successes to flip, and 0 O.W
+     * @return -1 if there is no move, 1 if its successes to flip, and 0 is it's not a legal move
      */
 	public int playTurn(Color color, Cell cell) {
 	    ArrayList <Cell> temp = PossibleMoves(color);
-	    if (temp.isEmpty()){
-	    	return -1;
-	    }
-	    else {
-		    setVector(temp, color);
-		    if (isLegal(temp, cell)){
+	    setVector(temp, color);
+	    if (isLegal(temp, cell)){
 	        flip(color, cell);
 		    updateScore();
-		    return 1;
+		    if (counterColorCanPlay(color)){
+		    	return 1;
+		    	
 		    }
 		    else {
-		    	return 0;
+		    	return 2;
 		    }
-	    }
+		}
+		else {
+			return 0;
+		}
 	}
-    /**
+	
+    private boolean counterColorCanPlay(Color color) {
+    	if (color == Color.BLACK){
+    		setVector(PossibleMoves(Color.WHITE), Color.WHITE);
+    		if (whiteMove.isEmpty()){
+    			return false;
+    		}
+    	}
+    	else{
+    		setVector(PossibleMoves(Color.BLACK), Color.BLACK);
+    		if (blackMove.isEmpty()){
+    			return false;
+    		}
+    	}
+    	return true;
+	}
+
+	/**
      * Check if its legal to make a move from possible move array.
      * 
      * @param allMoves- checked array.

@@ -118,16 +118,17 @@ public class GameFlowController implements Initializable {
 		}
 		if (this.current == Color.BLACK){
 			int check = logic.playTurn(Color.BLACK, cell);
-			if (check == -1){
-				printMessage("Black you have no legal Move");
-				current = Color.WHITE;
-			}
-			else if (check ==1){
+			if (check > 0){
 				this.scoreBlack.setText("Black score: " + logic.getScoreBlack());
 				this.scoreWhite.setText("White score: " + logic.getScoreWhite());
-				current = Color.WHITE;
 				boardControl.draw();
-				this.currentTrun.setText("Current player: " + returnColor(this.current));
+				if ( check == 1){
+					current = Color.WHITE;
+					this.currentTrun.setText("Current player: " + returnColor(this.current));
+				}
+				else{
+					printMessage("White you have no legal Move");
+				}
 				if (logic.isWin()){
 					printWinner();
 					return;
@@ -139,16 +140,17 @@ public class GameFlowController implements Initializable {
 		}
 		else{
 			int check = logic.playTurn(Color.WHITE, cell);
-			if (check == -1){
-				printMessage("White you have no valid move");
-				current = Color.BLACK;
-			}
-			else if (check == 1){
+			if (check > 0){
 				this.scoreBlack.setText("Black score: " + logic.getScoreBlack());
 				this.scoreWhite.setText("White score: " + logic.getScoreWhite());
-				current = Color.BLACK;
 				boardControl.draw();
-				this.currentTrun.setText("Current player: " + returnColor(this.current));
+				if (check == 1) {
+					current = Color.BLACK;
+					this.currentTrun.setText("Current player: " + returnColor(this.current));
+				}
+				else{
+					printMessage("Black you have no legal move");
+				}
 				if (logic.isWin()){
 					printWinner();
 					return;

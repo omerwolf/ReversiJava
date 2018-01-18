@@ -30,7 +30,7 @@ public class OpenWindowController extends GridPane {
             Stage stage = (Stage) startGameB.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GameFlow.fxml"));
             HBox root = (HBox) loader.load();
-            Scene GameScene = new Scene(root, 600, 600);
+            Scene GameScene = new Scene(root, 800, 600);
             stage.setScene(GameScene);
             stage.show();
 
